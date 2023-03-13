@@ -1,7 +1,5 @@
 package com.example.twentyone;
 
-import android.view.View;
-import android.widget.EditText;
 import android.widget.TextView;
 
 public class Game {
@@ -55,9 +53,8 @@ public class Game {
         //startRound(view, editText);
     }
 
-    public void makeDecision(TextView view, boolean b){
-        player.makeDecision(deck, discarded, view, b);
-
+    public boolean makeDecision(TextView view, boolean b){
+        return player.makeDecision(deck, discarded, view, b);
     }
 
     public void endRound(TextView view){

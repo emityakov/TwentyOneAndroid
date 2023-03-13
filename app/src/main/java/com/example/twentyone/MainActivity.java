@@ -40,7 +40,12 @@ public class MainActivity extends AppCompatActivity {
 
                 hit.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        game.makeDecision(textView, true);
+                        boolean b = true;
+                        while (game.makeDecision(textView, true)){
+                            b = true;
+                        }
+
+
                         game.endRound(textView);
                         stand.setVisibility(View.INVISIBLE);
                         hit.setVisibility(View.INVISIBLE);
@@ -54,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                         hit.setVisibility(View.INVISIBLE);
                     }
                 });
-                //game.endRound(textView);
+
             }
         });
 
