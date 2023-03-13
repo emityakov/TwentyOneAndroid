@@ -21,11 +21,11 @@ public class Player extends Person {
             if(this.getHand().scoreCount()>20){
                 return;
             }
-            //if they didnt bust or get 21, allow them to decide to hit or stand again by going back to this same method
+            /*//if they didnt bust or get 21, allow them to decide to hit or stand again by going back to this same method
             else{
-                this.makeDecision(deck, discard, textView, b);
+                this.makeDecision(deck, discard, textView, true);
             }
-
+            */
             //if they type any number other than 1, we'll assume they're standing
         } else {
             textView.append("You stand\n");
