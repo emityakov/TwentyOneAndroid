@@ -33,11 +33,11 @@ public class Game {
     }
 
     //This  method will handle the logic for each round
-    public void startRound(TextView view, EditText editText) {
-        if(wins>0 || losses>0 || pushes > 0){
+    public void startRound(TextView view) {
+        /*if(wins>0 || losses>0 || pushes > 0){
             view.append("Starting Next Round... Wins: " + wins + " Losses: "+ losses+ " Pushes: "+pushes);
         }
-
+        */
         //Give the dealer two cards
         dealer.getHand().takeCardFromDeck(deck);
         dealer.getHand().takeCardFromDeck(deck);
@@ -50,10 +50,18 @@ public class Game {
         view.append(dealer.printFirstHand());
         view.append(player.printHand());
 
-        player.makeDecision(deck, discarded, view, editText);
+        view.append("Would you like to: 1) Hit or 2) Stand\n");
+        //Start a new round
+        //startRound(view, editText);
+    }
 
+    public void makeDecision(TextView view, boolean b){
+        player.makeDecision(deck, discarded, view, b);
+
+    }
+
+    public void endRound(TextView view){
         view.append(dealer.printHand());
-
         while(dealer.getHand().scoreCount()<17){
             dealer.hit(deck, discarded, view);
         }
@@ -63,7 +71,7 @@ public class Game {
             losses++;
         }
         else if(dealer.getHand().scoreCount()>21){
-           view.append("Dealer busts\n");
+            view.append("Dealer busts\n");
             wins++;
         }
         else if(dealer.getHand().scoreCount() > player.getHand().scoreCount()){
@@ -77,9 +85,6 @@ public class Game {
         else{
             view.append("Push\n");
         }
-
-        //Start a new round
-        //startRound(view, editText);
     }
 
 }

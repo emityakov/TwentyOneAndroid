@@ -13,11 +13,6 @@
         android:layout_height="wrap_content"
         android:text="start" />
 
-    <EditText
-        android:id="@+id/et"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    </EditText>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -27,6 +22,16 @@
         android:text="Game"
         android:id="@+id/tv" />
     </ScrollView>
+    <Button
+        android:id="@+id/hitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hit" />
+    <Button
+        android:id="@+id/standBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Stand" />
 
 
 
