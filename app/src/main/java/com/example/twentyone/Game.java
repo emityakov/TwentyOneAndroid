@@ -53,6 +53,10 @@ public class Game {
         //startRound(view, editText);
     }
 
+    public boolean isGameOver() {
+        return !player.canHit();
+    }
+
     public boolean makeDecision(TextView view, boolean b){
         return player.makeDecision(deck, discarded, view, b);
     }
