@@ -5,11 +5,16 @@ import android.widget.TextView;
 
 public class Player extends Person {
 
+    private boolean isStand = false;
+
     //Create a new Player
     public Player() {
         super.setName("Player");
     }
 
+    public boolean canHit() {
+        return getHand().scoreCount() < 21 && !isStand;
+    }
 
     public boolean makeDecision(Deck deck, Deck discard, TextView textView, boolean b) {
 
@@ -31,6 +36,7 @@ public class Player extends Person {
             */
             //if they type any number other than 1, we'll assume they're standing
         } else {
+            isStand = true;
             textView.append("You stand\n");
             return false;
         }
