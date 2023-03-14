@@ -4,6 +4,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class Player extends Person {
+    private boolean isStand = false;
 
     //Create a new Player
     public Player() {
@@ -24,15 +25,14 @@ public class Player extends Person {
             else {
                 return true;
             }
-            /*//if they didnt bust or get 21, allow them to decide to hit or stand again by going back to this same method
-            else{
-                this.makeDecision(deck, discard, textView, true);
-            }
-            */
-            //if they type any number other than 1, we'll assume they're standing
         } else {
+            isStand = true;
             textView.append("You stand\n");
             return false;
         }
+    }
+
+    public boolean canHit() {
+        return getHand().scoreCount() < 21 && !isStand;
     }
 }

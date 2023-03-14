@@ -32,7 +32,7 @@ public class Game {
 
     //This  method will handle the logic for each round
     public void startRound(TextView view) {
-        /*if(wins>0 || losses>0 || pushes > 0){
+        /* if(wins>0 || losses>0 || pushes > 0){
             view.append("Starting Next Round... Wins: " + wins + " Losses: "+ losses+ " Pushes: "+pushes);
         }
         */
@@ -52,6 +52,11 @@ public class Game {
         //Start a new round
         //startRound(view, editText);
     }
+
+    public boolean isGameOver() {
+        return !player.canHit();
+    }
+
 
     public boolean makeDecision(TextView view, boolean b){
         return player.makeDecision(deck, discarded, view, b);

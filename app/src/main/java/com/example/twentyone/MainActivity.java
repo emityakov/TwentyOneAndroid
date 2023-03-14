@@ -3,6 +3,7 @@ package com.example.twentyone;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -36,27 +37,26 @@ public class MainActivity extends AppCompatActivity {
                 game.startRound(textView);
                 stand.setVisibility(View.VISIBLE);
                 hit.setVisibility(View.VISIBLE);
-                // boolean instance variables
 
                 hit.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
-                        boolean b = true;
-                        while (game.makeDecision(textView, true)){
-                            b = true;
+                        game.makeDecision(textView, true);
+                        if (game.isGameOver()) {
+                            game.endRound(textView);
+                            stand.setVisibility(View.INVISIBLE);
+                            hit.setVisibility(View.INVISIBLE);
+                            Log.d("GGGGG", String.valueOf(b));
                         }
-
-
-                        game.endRound(textView);
-                        stand.setVisibility(View.INVISIBLE);
-                        hit.setVisibility(View.INVISIBLE);
                     }
                 });
                 stand.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View v) {
                         game.makeDecision(textView, false);
-                        game.endRound(textView);
-                        stand.setVisibility(View.INVISIBLE);
-                        hit.setVisibility(View.INVISIBLE);
+                        if (game.isGameOver()) {
+                            game.endRound(textView);
+                            stand.setVisibility(View.INVISIBLE);
+                            hit.setVisibility(View.INVISIBLE);
+                        }
                     }
                 });
 
