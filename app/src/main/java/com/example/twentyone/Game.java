@@ -7,11 +7,8 @@ public class Game {
     //Declare variables needed for Game class
     private Deck deck, discarded;
 
-    private Dealer dealer;
-    private Player player;
-    private int wins, losses, pushes;
-
-
+    private Computer computer;
+    private Human human;
 
     public Game(){
 
@@ -21,9 +18,8 @@ public class Game {
         discarded = new Deck();
 
         //Create the People
-        dealer = new Dealer();
-        player = new Player();
-
+        computer = new Computer();
+        human = new Human();
 
         //Shuffle the deck and start the first round
         deck.shuffle();
@@ -32,60 +28,49 @@ public class Game {
 
     //This  method will handle the logic for each round
     public void startRound(TextView view) {
-        /* if(wins>0 || losses>0 || pushes > 0){
-            view.append("Starting Next Round... Wins: " + wins + " Losses: "+ losses+ " Pushes: "+pushes);
-        }
-        */
         //Give the dealer two cards
-        dealer.getHand().takeCardFromDeck(deck);
-        dealer.getHand().takeCardFromDeck(deck);
+        computer.getHand().takeCardFromDeck(deck);
+        computer.getHand().takeCardFromDeck(deck);
 
         //Give the player two cards
-        player.getHand().takeCardFromDeck(deck);
-        player.getHand().takeCardFromDeck(deck);
+        human.getHand().takeCardFromDeck(deck);
+        human.getHand().takeCardFromDeck(deck);
 
         //Print their hands
-        view.append(dealer.printFirstHand());
-        view.append(player.printHand());
+        view.append(computer.printFirstHand());
+        view.append(human.printHand());
 
-        view.append("Would you like to: 1) Hit or 2) Stand\n");
-        //Start a new round
-        //startRound(view, editText);
     }
 
     public boolean isGameOver() {
-        return !player.canHit();
+        return !human.canHit();
     }
 
 
     public boolean makeDecision(TextView view, boolean b){
-        return player.makeDecision(deck, discarded, view, b);
+        return human.makeDecision(deck, discarded, view, b);
     }
 
     public void endRound(TextView view){
-        view.append(dealer.printHand());
-        while(dealer.getHand().scoreCount()<17){
-            dealer.hit(deck, discarded, view);
+        view.append(computer.printHand());
+        while(computer.getHand().scoreCount()<17){
+            computer.hit(deck, discarded, view);
         }
 
-        if(player.getHand().scoreCount()>21){
-            view.append("You busts\n");
-            losses++;
+        if(human.getHand().scoreCount()>21){
+            view.append("У вас перебор!\n");
         }
-        else if(dealer.getHand().scoreCount()>21){
-            view.append("Dealer busts\n");
-            wins++;
+        else if(computer.getHand().scoreCount()>21){
+            view.append("У диллера перебор!\n");
         }
-        else if(dealer.getHand().scoreCount() > player.getHand().scoreCount()){
-            view.append("You lose\n");
-            losses++;
+        else if(computer.getHand().scoreCount() > human.getHand().scoreCount()){
+            view.append("Вы проиграли!\n");
         }
-        else if(player.getHand().scoreCount() > dealer.getHand().scoreCount()){
-            view.append("You win\n");
-            wins++;
+        else if(human.getHand().scoreCount() > computer.getHand().scoreCount()){
+            view.append("Вы выйграли!\n");
         }
         else{
-            view.append("Push\n");
+            view.append("Ничья!\n");
         }
     }
 

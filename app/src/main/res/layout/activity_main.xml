@@ -11,7 +11,7 @@
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="start" />
+        android:text="Раздать карты" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,19 +19,19 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Game"
+        android:text=""
         android:id="@+id/tv" />
     </ScrollView>
     <Button
         android:id="@+id/hitBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hit" />
+        android:text="Еще карту" />
     <Button
         android:id="@+id/standBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Stand" />
+        android:text="Стоп" />
 
 
 

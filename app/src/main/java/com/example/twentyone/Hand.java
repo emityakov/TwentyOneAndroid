@@ -64,12 +64,9 @@ public class Hand {
     }
 
     public void discardHandToDeck(Deck discardDeck){
-
         //copy cards from hand to discardDeck
         discardDeck.addCards(cards);
-
         //clear the hand
         cards.clear();
-
     }
 }

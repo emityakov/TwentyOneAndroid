@@ -1,38 +1,57 @@
 package com.example.twentyone;
 
-import android.widget.EditText;
 import android.widget.TextView;
 
-public class Player extends Person {
-    private boolean isStand = false;
+public abstract class Player {
 
-    //Create a new Player
-    public Player() {
-        super.setName("Player");
+    private Hand hand;
+    private String name;
+
+    public Player(){
+        this.hand = new Hand();
+        this.name = "";
     }
 
+    public Hand getHand(){
+        return this.hand;
+    }
 
-    public boolean makeDecision(Deck deck, Deck discard, TextView textView, boolean b) {
+    public void setHand(Hand hand){
+        this.hand = hand;
+    }
 
-        //if they decide to hit
-        if (b) {
-            //hit the deck using the deck and discard deck
-            this.hit(deck, discard, textView);
-            //return (exit the method) if they have blackjack or busted
-            if(this.getHand().scoreCount()>20){
-                return false;
-            }
-            else {
-                return true;
-            }
-        } else {
-            isStand = true;
-            textView.append("You stand\n");
+    public String getName(){
+        return this.name;
+    }
+
+    public void setName(String name){
+        this.name = name;
+
+    }
+
+    public boolean hasBlackjack(){
+        if(this.getHand().scoreCount() == 21){
+            return true;
+        }
+        else{
             return false;
         }
     }
 
-    public boolean canHit() {
-        return getHand().scoreCount() < 21 && !isStand;
+    public String printHand(){
+        return this.name + " имеет следующие карты: " +
+                this.hand + ". Число очков: " + this.hand.scoreCount() + ".\n";
     }
+
+    public void hit(Deck deck, Deck discard, TextView textView){
+
+        //If there's no cards left in the deck
+        if (!deck.hasCards()) {
+            deck.reloadDeckFromDiscard(discard);
+        }
+        this.hand.takeCardFromDeck(deck);
+        textView.append(this.name + " получает карту\n" + this.printHand());
+
+    }
+
 }

@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.tv);
-        //editText = findViewById(R.id.et);
         start = findViewById(R.id.button);
 
         hit = findViewById(R.id.hitBtn);
@@ -45,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
                             game.endRound(textView);
                             stand.setVisibility(View.INVISIBLE);
                             hit.setVisibility(View.INVISIBLE);
-                            Log.d("GGGGG", String.valueOf(b));
                         }
                     }
                 });
@@ -59,11 +57,8 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
-
             }
         });
 
-
      }
-
 }
